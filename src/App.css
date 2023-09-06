@@ -23,6 +23,7 @@ header {
   display: flex;
   align-items: center;
   padding-block: 10px;
+  justify-content: space-between;
 }
 
 header .site-logo {
@@ -36,7 +37,7 @@ header .site-logo {
 header a {
   text-decoration: none;
   color: #4D4D4D;
-  font-weight: 600;
+  font-weight: 700;
   padding: 5px 20px;
 }
 
@@ -69,9 +70,10 @@ header a:hover {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: 350px;
+  min-height: 80vh;
   color: white;
   padding: 45px 23px;
+  text-align: center;
 }
 
 .home-container h1 {
@@ -90,7 +92,7 @@ header a:hover {
   text-decoration: none;
   background-color: #FF8C38;
   border: none;
-  width: 100%;
+  width: 30%;
   margin-top: 27px;
   padding-block: .75rem;
   color: white;
