@@ -153,7 +153,7 @@ header a:hover {
 
 .van-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   gap: 34px;
   margin-top: 57px;
@@ -234,10 +234,6 @@ i[class*='van-type-'] {
 .van-detail-container .back-button {
   color: black;
   text-decoration: none;
-}
-
-.van-detail-container .back-button:visited {
-  
 }
 
 .van-detail-container .back-button span {
