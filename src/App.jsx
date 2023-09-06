@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <header>
-        <Link to="/">#VAN LIFE</Link>
+        <Link className="site-logo" to="/">#VAN LIFE</Link>
         <nav>
           <Link to="/about">About</Link>
           <Link to="/vans">Vans</Link>

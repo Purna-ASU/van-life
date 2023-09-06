@@ -13,7 +13,7 @@ function Vans() {
     }, [])
 
     console.log(vans)
-    const vanElements = vans.map(van => {
+    const vanElements = vans.map(van => (
         <div key={van.id} className="van-tile">
             <img src={van.imageUrl} />
             <div className="van-info">
@@ -22,9 +22,10 @@ function Vans() {
             </div>
             <i className={`van-type ${van.type} selected`}>{van.type}</i>
         </div>
-    })
+    ))
     return (
         <div className="van-list-container">
+            <h1>Explore our van options</h1>
             <div className="van-list">
                 {vanElements}
             </div>
