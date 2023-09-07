@@ -1,34 +1,39 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+
+import { useEffect, useState } from "react"
+import { useParams, Link } from "react-router-dom"
 
 export default function HostVanDetail() {
-    const params = useParams();
-    const [van, setVan] = useState(null) 
+    const { id } = useParams()
+    const [currentVan, setCurrentVan] = useState(null)
 
     useEffect(() => {
-        async function vanDetails() {
-            const res = await fetch(`/api/host/vans/${params.id}`)
-            const data = await res.json();
-            setVan(data.vans)
-        }
-        vanDetails()
-    },[params.id])
+        async function getData() {
+            const res = await fetch(`/api/host/vans/${id}`)
+            const data = await res.json()
+            setCurrentVan(data.vans)
+        } getData()
+    }, [])
 
-    console.log(van)
-    
+    if (!currentVan) {
+        return <h1>Loading...</h1>
+    }
+
     return (
-        <div className="van-detail-container">
-        {van ? (
-            <div className="van-detail">
-                <img src={van.imageUrl} />
-                <i className={`van-type ${van.type} selected`}>{van.type}</i>
-                <h2>{van.name}</h2>
-                <p className="van-price"><span>${van.price}</span>/day</p>
-                <p>{van.description}</p>
-                <button className="link-button">Rent this van</button>
+        <section>
+            <div className="host-van-detail-layout-container">
+                <div className="host-van-detail">
+                    <img src={currentVan.imageUrl} />
+                    <div className="host-van-detail-info-text">
+                        <i
+                            className={`van-type van-type-${currentVan.type}`}
+                        >
+                            {currentVan.type}
+                        </i>
+                        <h3>{currentVan.name}</h3>
+                        <h4>${currentVan.price}/day</h4>
+                    </div>
+                </div>
             </div>
-        ) : <h2>Loading...</h2>}
-    </div>
+        </section>
     )
-} 
-
+}
