@@ -39,12 +39,6 @@ header .site-logo {
   font-size: 25px;
 }
 
-a.active-link {
-  font-weight: bold;
-  text-decoration: underline;
-  color: #161616;
-}
-
 header a {
   text-decoration: none;
   color: #4D4D4D;
@@ -102,14 +96,17 @@ footer {
   padding: 45px 23px;
   text-align: center;
 }
+
 .home-container h1 {
   font-weight: 700;
   font-size: 2.25rem;
   line-height: 42px;
 }
+
 .home-container p {
   line-height: 24px;
 }
+
 .home-container a {
   display: inline-block;
   text-align: center;
@@ -125,6 +122,7 @@ footer {
   cursor: pointer;
   transition: transform .1s ease-in-out;
 }
+
 .home-container a:hover {
   transform: translate(1px, 1px);
 }
