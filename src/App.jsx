@@ -13,15 +13,17 @@ import HostVans from './pages/Host/HostVans'
 import HostVanDetail from './pages/Host/HostVanDetail'
 import HostVanPricing from './pages/Host/HostVanPricing'
 import HostVanPhotos from './pages/Host/HostVanPhotos'
+import HostVanInfo from './pages/Host/HostVanInfo'
+import NotFound from './pages/NotFound'
 
 import "./server"
-import HostVanInfo from './pages/Host/HostVanInfo'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />}>
+          <Route path='*' element={<NotFound/>} />
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
           
