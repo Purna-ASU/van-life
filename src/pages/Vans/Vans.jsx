@@ -5,13 +5,22 @@ import { getVans } from "../../api";
 function Vans() {
     const [vans, setVans] = useState([])
     const [searchParams, setSearchParams] = useSearchParams();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null)
 
     const typeFilter = searchParams.get("type");
 
     useEffect(() => {
         async function loadData() {
-            const data = await getVans() 
-            setVans(data)
+            setLoading(true)
+            try {
+                const data = await getVans() 
+                setVans(data)
+            } catch(err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
         }
         loadData()
     }, [])
@@ -52,6 +61,14 @@ function Vans() {
             }
             return prevParams
         })
+    }
+
+    if(loading){
+        return <h1>Loading</h1>
+    }
+
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
     }
 
     return (
