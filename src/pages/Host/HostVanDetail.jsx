@@ -5,6 +5,8 @@ import { useParams, Link, Outlet, NavLink } from "react-router-dom"
 export default function HostVanDetail() {
     const { id } = useParams()
     const [currentVan, setCurrentVan] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     const activeStyles = {
         fontWeight: "bold",
@@ -13,15 +15,27 @@ export default function HostVanDetail() {
     }
 
     useEffect(() => {
-        async function getData() {
-            const res = await fetch(`/api/host/vans/${id}`)
-            const data = await res.json()
-            setCurrentVan(data.vans)
-        } getData()
-    }, [])
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getHostVans(id)
+                setCurrentVan(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
+        }
 
-    if (!currentVan) {
+        loadVans()
+    }, [id])
+
+    if (loading) {
         return <h1>Loading...</h1>
+    }
+
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
     }
 
     return (
