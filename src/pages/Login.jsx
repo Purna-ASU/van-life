@@ -9,13 +9,15 @@ export default function Login() {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const from = location.state?.from || "/host"
+
     function handleSubmit(e) {
         e.preventDefault()
         setStatus("submitting")
         loginUser(loginFormData)
             .then(data => {
                 setError(null)
-                navigate("/host")
+                navigate(from, { replace: true})
             })
             .catch(err => {
                 setError(err)
