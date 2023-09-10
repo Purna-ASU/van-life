@@ -4,23 +4,24 @@ import {
     collection,
     doc,
     getDocs,
-    getDoc
+    getDoc,
+    query,
+    where,
+    documentId
 } from "firebase/firestore/lite"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAx__KgbpsMbPek4ri-7cFOuOZCmpjEE88",
-  authDomain: "vanlife-38d41.firebaseapp.com",
-  projectId: "vanlife-38d41",
-  storageBucket: "vanlife-38d41.appspot.com",
-  messagingSenderId: "878640695849",
-  appId: "1:878640695849:web:48b4962269ed024bcc2a38"
-};
-
+    apiKey: "AIzaSyAx__KgbpsMbPek4ri-7cFOuOZCmpjEE88",
+    authDomain: "vanlife-38d41.firebaseapp.com",
+    projectId: "vanlife-38d41",
+    storageBucket: "vanlife-38d41.appspot.com",
+    messagingSenderId: "878640695849",
+    appId: "1:878640695849:web:48b4962269ed024bcc2a38"
+  };
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-// Refactoring the fetching functions below
 const vansCollectionRef = collection(db, "vans")
 
 export async function getVans() {
@@ -50,20 +51,6 @@ export async function getHostVans() {
     }))
     return vans
 }
-
-// export async function getHostVans(id) {
-//     const url = id ? `/api/host/vans/${id}` : "/api/host/vans"
-//     const res = await fetch(url)
-//     if (!res.ok) {
-//         throw {
-//             message: "Failed to fetch vans",
-//             statusText: res.statusText,
-//             status: res.status
-//         }
-//     }
-//     const data = await res.json()
-//     return data.vans
-// }
 
 export async function loginUser(creds) {
     const res = await fetch("/api/login",
